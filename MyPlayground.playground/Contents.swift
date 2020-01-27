@@ -6,6 +6,7 @@ protocol Food {
 
 protocol Animal {
     associatedtype Food
+    var lastEatenFood: Food { get }
     func feed(_ food: Food) -> String
 }
 
@@ -16,6 +17,7 @@ extension Animal {
 }
 
 struct AnyAnimal<Food>: Animal {
+    var lastEatenFood: Food
     let feedClosure: (Food) -> String
 
     init<Base: Animal>(base: Base) where Food == Base.Food {
